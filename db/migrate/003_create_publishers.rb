@@ -1,4 +1,4 @@
-class CreatePublishers < ActiveRecord::Migration(5.2)
+class CreatePublishers < ActiveRecord::Migration[5.2]
 
     def change
         create_table :publishers do |t|
@@ -7,3 +7,4 @@ class CreatePublishers < ActiveRecord::Migration(5.2)
     end
             
 end
+

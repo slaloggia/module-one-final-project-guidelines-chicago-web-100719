@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "characters", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "publishers", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "user_characters", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "character_id"
+    t.integer "rating"
+  end
+
+  create_table "users", force: :cascade do |t|
     t.string "name"
   end
 
