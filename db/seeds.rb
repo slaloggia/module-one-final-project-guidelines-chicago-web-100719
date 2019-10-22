@@ -5,9 +5,17 @@ def get_data
     response_hash = JSON.parse(response_string)
 end
 
-def add_characters
-    characters = get_characters.each {|c| Character.create(name: c)}
-    puts characters
+def add_data
+    get_data.each {|character| Character.create(
+        name: character["name"],
+        secret_identity: character["biography"]["alterEgos"],
+        strength: character["powerstats"]["strength"],
+        speed: character["powerstats"]["speed"],
+        intelligence: character["powerstats"]["intelligence"],
+        alignment: character["biography"]["alignment"],
+        publisher_id: Publisher.find_or_create_by(name: character["biography"]["publisher"]).id
+    )}
+    
 end
 
-add_characters
+add_data
