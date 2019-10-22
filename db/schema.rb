@@ -14,6 +14,12 @@ ActiveRecord::Schema.define(version: 4) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
+    t.string "secret_identity"
+    t.integer "strength"
+    t.integer "speed"
+    t.integer "intelligence"
+    t.string "alignment"
+    t.integer "publisher_id"
   end
 
   create_table "publishers", force: :cascade do |t|
