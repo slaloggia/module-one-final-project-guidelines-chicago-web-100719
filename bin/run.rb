@@ -26,13 +26,13 @@ def welcome
  
  def get_user_input
      puts "Enter a character name:"
-     user_input = gets.strip.downcase
+     user_input = gets.strip
  end
  
  def runner
      name = welcome
      user = set_user(name)
-     user
+     p user
      puts "What do you want to do???"
      options
      user_command = gets.strip.downcase
@@ -40,11 +40,14 @@ def welcome
          when "find"
             name = get_user_input
             character = Character.find_by(name: name)
-            character
+            p character
          when "add"
             name = get_user_input
-            add_character_to_favorites(name)
-
+            user.add_character_to_favorites(name)
+         when "delete"
+            name = get_user_input
+            user.delete_from_favorites(name)
+            
         end
  
      

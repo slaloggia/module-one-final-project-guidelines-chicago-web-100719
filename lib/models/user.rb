@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     
     def delete_from_favorites(character)
         find_favorite(character).delete
-        puts "#{character} has been removed from your favorites and exiled"
+        puts "#{character} has been removed from your favorites and exiled to the Phantom Zone!!!!!"
     end
      
     def favorite_characters
