@@ -27,9 +27,25 @@ def options
     puts "-strongest : See your strongest character"
     puts "-fastest : See your fastest character"
     puts "-smartest : See your smartest character"
+    puts "-whodat : Play our Secret Identity guessing game"
     puts "-menu : View this menu"
     puts "-exit : Exits the program" 
     puts "\n"
+end
+
+def who_dat
+puts "\nWelcome to 'Who Dat?' the SuperHuman identity game! \n\nI'll give you a secret identity, you tell me which character it belongs to!\n\n"
+masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
+right_character = masks.sample
+puts "Who is #{right_character.secret_identity}?\n\n"
+guess = gets.strip
+
+    if guess == right_character.name
+        puts "\nWell done, friend!\n\n"
+    else
+        puts "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
+    end
+
 end
  
  
@@ -48,7 +64,7 @@ def runner
     user_command = nil
     options
     until user_command == "exit"
-        puts "What do you want to do???\n"
+        puts "What do you want to do???\n\n"
         user_command = gets.strip.downcase
     case user_command
         when "find"
@@ -80,6 +96,8 @@ def runner
         p user.fastest
         when "publisher"
             user.favorite_publishers
+        when "whodat"
+            who_dat
         when "menu"
             options
         when "exit"
