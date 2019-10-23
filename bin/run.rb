@@ -21,6 +21,7 @@ def options
     puts "-delete : Remove character from your favorites"
     puts "-rate : Add/Update character ratings"
     puts "-favorites : See your favorite characters"
+    puts "-publisher : Finds your favorite publisher"
     puts "-strongest: See your strongest character"
     puts "-fastest: See your fastest character"
     puts "-smartest: See your smartest character"
@@ -46,17 +47,17 @@ def runner
         user_command = gets.strip.downcase
     case user_command
         when "find"
-        name = get_user_input
+        name = get_user_input.split.map(&:capitalize).join(' ')
         character = Character.find_by(name: name)
         p character
         when "add"
-        name = get_user_input
+        name = get_user_input.split.map(&:capitalize).join(' ')
         user.add_character_to_favorites(name)
         when "delete"
-        name = get_user_input
+        name = get_user_input.split.map(&:capitalize).join(' ')
         user.delete_from_favorites(name)
         when "rate"
-        name = get_user_input
+        name = get_user_input.split.map(&:capitalize).join(' ')
         puts "Enter a rating for this character"
         rating = gets.chomp
         user.update_character_rating(name, rating)
@@ -70,6 +71,9 @@ def runner
         
         when "fastest"
         p user.fastest
+
+        when "publisher"
+            user.favorite_publishers
 
         when "exit"
             exit_app

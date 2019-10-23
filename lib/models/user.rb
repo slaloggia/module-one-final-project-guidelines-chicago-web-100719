@@ -18,8 +18,12 @@ class User < ActiveRecord::Base
     end
 
     def update_character_rating(character, new_rating)
+        if find_favorite(character)
         favorite = find_favorite(character)
         favorite.update_attribute(:rating, new_rating)
+        else
+            puts "Sorry, I could not find this character in your favorites."
+        end
     end
 
     def all_favorites
@@ -32,12 +36,13 @@ class User < ActiveRecord::Base
         favorite_names.each {|name| puts name}
     end
 
-    # def favorite_publishers
-    #     publisher_id = all_favorites.map {|f| Character.find_by(id: f.character_id).publisher_id}
-    #     publishers = publisher_id.map {|id| Publisher.find_by(id: id)}
-    #     sorted = publishers.inject(Hash.new(0)) {|total, p| total[p] += 1; total}
-    #     sorted.keys[0]
-    # end
+    def favorite_publishers
+        publisher_id = all_favorites.map {|f| Character.find_by(id: f.character_id).publisher_id}
+        publishers = publisher_id.map {|id| Publisher.find_by(id: id)}
+        sorted = publishers.inject(Hash.new(0)) {|total, p| total[p] += 1; total}
+        p sorted.max_by{|k,v| v}[0][:name]
+        
+    end
     
     def delete_from_favorites(character)
         find_favorite(character).delete
