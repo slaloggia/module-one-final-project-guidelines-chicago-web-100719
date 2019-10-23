@@ -2,4 +2,52 @@ require_relative '../config/environment'
 
 
 
-puts "HELLO WORLD"
+def welcome 
+    puts "Welcome to SuperWorld! Enter your name:"
+    gets.chomp
+ end
+ 
+ def set_user(name)
+     User.find_or_create_by(name: name)
+ end
+ 
+ def options
+     puts "-find : Find a character in the database"
+     puts "-add : Add a character to your favorites"
+     puts "-delete : Remove character from your favorites"
+     puts "-rate : Add/Update character ratings"
+     puts "-favorites : See your favorite characters"
+     puts "-strongest: See your strongest character"
+     puts "-fastest: See your fastest character"
+     puts "-smartest: See your smartest character"
+ end
+ 
+     
+ 
+ def get_user_input
+     puts "Enter a character name:"
+     user_input = gets.strip.downcase
+ end
+ 
+ def runner
+     name = welcome
+     user = set_user(name)
+     user
+     puts "What do you want to do???"
+     options
+     user_command = gets.strip.downcase
+     case user_command
+         when "find"
+            name = get_user_input
+            character = Character.find_by(name: name)
+            character
+         when "add"
+            name = get_user_input
+            add_character_to_favorites(name)
+
+        end
+ 
+     
+ end
+ 
+ runner
