@@ -47,7 +47,22 @@ def welcome
          when "delete"
             name = get_user_input
             user.delete_from_favorites(name)
+         when "rate"
+            name = get_user_input
+            puts "Enter a rating for this character"
+            rating = gets.chomp
+            user.update_character_rating(name, rating)
+         when "favorites"
+            user.favorite_characters_names  
+         when "strongest"
+            p user.strongest
+
+         when "smartest"
+            p user.smartest
             
+         when "fastest"
+            p user.fastest
+
         end
  
      
