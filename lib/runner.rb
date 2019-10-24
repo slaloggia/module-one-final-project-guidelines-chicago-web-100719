@@ -5,7 +5,7 @@ def welcome
     puts CLEAR 
     font = TTY::Font.new(:doom)
     pastel = Pastel.new
-    puts pastel.red(font.write("SUPERWORLD"))
+    puts pastel.red(font.write("  SUPERWORLD"))
     puts pastel.yellow("******************************************************************************")
     puts "\nEnter your name:\n"
     gets.chomp
@@ -29,7 +29,8 @@ end
 
 def find_character(name)
     if Character.find_by(name: name)
-        character = Character.find_by(name: name)
+        character = Character.where(name: name)
+        character.each {|character|
         puts "________________________"
         puts "Name: #{character.name}"
         puts "Secret Identity: #{character.secret_identity}"
@@ -40,6 +41,7 @@ def find_character(name)
         puts "  Speed: #{character.speed}"
         puts "  Intelligence: #{character.intelligence}"
         puts "________________________"
+    }
     else
         puts "That character is not in the database"
     end
