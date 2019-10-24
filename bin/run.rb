@@ -2,14 +2,15 @@ require_relative '../config/environment'
 
 
 
+
 def welcome 
-    puts "Welcome to SuperWorld! Enter your name:"
+    puts "\n\nWelcome to SuperWorld! Enter your name:"
     puts "\n"
     gets.chomp
 end
 
 def exit_app
-    puts "Until next time...EXCELSIOR!!!"
+    puts "Until next time, True Believer...\n\nEXCELSIOR!!!\n\n"
 end
  
 def set_user(name)
@@ -17,35 +18,28 @@ def set_user(name)
 end
  
 def options
-    puts "***MENU***"
-    puts "-find : Find a character in the database"
-    puts "-add : Add a character to your favorites"
-    puts "-delete : Remove character from your favorites"
-    puts "-rate : Add/Update character ratings"
-    puts "-favorites : See your favorite characters"
-    puts "-publisher : Finds your favorite publisher"
-    puts "-strongest : See your strongest character"
-    puts "-fastest : See your fastest character"
-    puts "-smartest : See your smartest character"
-    puts "-whodat : Play our Secret Identity guessing game"
-    puts "-menu : View this menu"
-    puts "-exit : Exits the program" 
-    puts "\n"
+    print TTY::Box.frame "*****Menu*****", "\n\n-find : Find a character in the database", "-add : Add a character to your favorites", 
+    "-delete : Remove character from your favorites", "-rate : Add/Update character ratings", "-favorites : See your favorite characters",
+    "-publisher : Finds your favorite publisher", "-strongest : See your strongest character", "-fastest : See your fastest character",
+    "-smartest : See your smartest character", "-whodat : Play our Secret Identity guessing game", "-menu : View this menu", "-exit : Exits the program" 
+
 end
 
 def who_dat
 puts "\nWelcome to 'Who Dat?' the SuperHuman identity game! \n\nI'll give you a secret identity, you tell me which character it belongs to!\n\n"
-masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
-right_character = masks.sample
-puts "Who is #{right_character.secret_identity}?\n\n"
-guess = gets.strip
+guess = nil
+    until guess == "exit game"
+    masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
+    right_character = masks.sample
+    puts "Who is #{right_character.secret_identity}?\n\n"
+    guess = gets.strip
 
-    if guess == right_character.name
-        puts "\nWell done, friend!\n\n"
-    else
-        puts "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
-    end
-
+        if guess == right_character.name
+            puts "\nWell done, friend!\n\n"
+        else
+            puts "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
+        end
+    end 
 end
  
  
