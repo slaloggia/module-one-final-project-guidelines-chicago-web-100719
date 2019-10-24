@@ -19,6 +19,21 @@ def options
     table
 end
 
+def find_character(name)
+    character = Character.find_by(name: name)
+    puts "________________________"
+    puts "Name: #{character.name}"
+    puts "Secret Identity: #{character.secret_identity}"
+    puts "Publisher: #{Publisher.find(character[:publisher_id])[:name]}"
+    puts "Alignment: #{character.alignment}"
+    puts "- Stats -"
+    puts "  Strength: #{character.strength}"
+    puts "  Speed: #{character.speed}"
+    puts "  Intelligence: #{character.intelligence}"
+    puts "________________________"
+
+end
+
 
 def table
     menu_box = TTY::Box.frame(width: 82, height: 19, border: :thick, title: {top_left: 'MENU'}, style: {bg: :blue, fg: :white, border: {bg: :blue, fg: :white}}) do
@@ -39,7 +54,7 @@ end
 
  
 def get_user_input
-    puts "Enter a character name:"
+    puts "\nEnter a character name:"
     user_input = gets.strip
 end
  
@@ -56,8 +71,7 @@ def runner
     case user_command
         when "find"
         name = get_user_input.split.map(&:capitalize).join(' ')
-        character = Character.find_by(name: name)
-        p character 
+        find_character(name)
         when "add"
         name = get_user_input.split.map(&:capitalize).join(' ')
         user.add_character_to_favorites(name)
