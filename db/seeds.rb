@@ -8,7 +8,7 @@ end
 def add_data
     get_data.each {|character| Character.create(
         name: character["name"],
-        secret_identity: character["biography"]["alterEgos"],
+        secret_identity: character["biography"]["fullName"],
         strength: character["powerstats"]["strength"],
         speed: character["powerstats"]["speed"],
         intelligence: character["powerstats"]["intelligence"],

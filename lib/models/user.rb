@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
             UserCharacter.find_or_create_by(user_id: self.id, character_id: character.id)
             p "#{name} has been saved to your favorites!"
         else
-            p "I'm sorry, this character is not in our database"
+            p "Sorry, this character is not in our database"
         end
     end
 
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
         favorite = find_favorite(character)
         favorite.update_attribute(:rating, new_rating)
         else
-            puts "Sorry, I could not find this character in your favorites."
+            puts "\nSorry, this character is not on your team.\n"
         end
     end
 
@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
 
     def favorite_characters_names
         favorite_names = all_favorites.map {|favorite| Character.find_by(id: favorite.character_id).name}
-        puts "Your favorite characters are:"
-        favorite_names.each {|name| puts name}
+        puts "\nYour favorite characters are:"
+        favorite_names.each {|name| puts "- #{name}"}
     end
 
     def favorite_publishers
@@ -43,10 +43,10 @@ class User < ActiveRecord::Base
         p sorted.max_by{|k,v| v}[0][:name]
         
     end
-    
+
     def delete_from_favorites(character)
         find_favorite(character).delete
-        puts "#{character} has been removed from your favorites and exiled to the Phantom Zone!!!!!"
+        puts "#{character} has been removed from your team and exiled to the Phantom Zone!!!!!"
     end
      
     def favorite_characters
@@ -54,15 +54,21 @@ class User < ActiveRecord::Base
     end
 
     def strongest
-        favorite_characters.max_by {|c| c["strength"]}
+        strong = favorite_characters.max_by {|c| c["strength"]}
+        puts "\n"
+        return "#{strong.name} has a strength of #{strong.strength}!"
     end
 
     def smartest
-        favorite_characters.max_by {|c| c["intelligence"]}
+        smart = favorite_characters.max_by {|c| c["intelligence"]}
+        puts "\n"
+        return "#{smart.name} has an intelligence of #{smart.intelligence}!"
     end
 
     def fastest
-        favorite_characters.max_by {|c| c["speed"]}
+        fast = favorite_characters.max_by {|c| c["speed"]}
+        puts "\n"
+        return "#{fast.name} has a speed of #{fast.speed}!"
     end
 
     
