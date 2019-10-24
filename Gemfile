@@ -7,5 +7,6 @@ gem "pry"
 gem "require_all"
 gem "activerecord", '~> 5.2'
 gem "rest-client"
-gem 'tty-box'
-gem 'tty-font'
+gem "tty-table"
+gem "tty-box"
+
