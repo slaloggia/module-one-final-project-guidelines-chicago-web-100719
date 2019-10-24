@@ -6,7 +6,7 @@ end
 
 def exit_app
     box = TTY::Box.frame(width: 82, height: 5, align: :center, style: {bg: :red, fg: :yellow, border: {bg: :red, fg: :yellow}}) do
-        "Until next time, True Believer...\nEXCELSIOR!!!"
+        "\nUntil next time, True Believer...\nEXCELSIOR!!!"
     end
     print box
 end
@@ -20,18 +20,21 @@ def options
 end
 
 def find_character(name)
-    character = Character.find_by(name: name)
-    puts "________________________"
-    puts "Name: #{character.name}"
-    puts "Secret Identity: #{character.secret_identity}"
-    puts "Publisher: #{Publisher.find(character[:publisher_id])[:name]}"
-    puts "Alignment: #{character.alignment}"
-    puts "- Stats -"
-    puts "  Strength: #{character.strength}"
-    puts "  Speed: #{character.speed}"
-    puts "  Intelligence: #{character.intelligence}"
-    puts "________________________"
-
+    if Character.find_by(name: name)
+        character = Character.find_by(name: name)
+        puts "________________________"
+        puts "Name: #{character.name}"
+        puts "Secret Identity: #{character.secret_identity}"
+        puts "Publisher: #{Publisher.find(character[:publisher_id])[:name]}"
+        puts "Alignment: #{character.alignment}"
+        puts "- Stats -"
+        puts "  Strength: #{character.strength}"
+        puts "  Speed: #{character.speed}"
+        puts "  Intelligence: #{character.intelligence}"
+        puts "________________________"
+    else
+        puts "That character is not in the database"
+    end
 end
 
 
@@ -85,7 +88,7 @@ def runner
         puts "Enter a rating for this character \n"
         rating = gets.chomp
         user.update_character_rating(name, rating)
-        puts "\nYour have rated #{name} #{rating}"
+        puts "\nYou have rated #{name} #{rating}"
         puts "\n"
         when "favorites"
         user.favorite_characters_names  

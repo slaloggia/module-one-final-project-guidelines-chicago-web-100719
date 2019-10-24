@@ -31,9 +31,9 @@ class User < ActiveRecord::Base
     end
 
     def favorite_characters_names
-        favorite_names = all_favorites.map {|favorite| Character.find_by(id: favorite.character_id).name}
+        favorite_chars = all_favorites.map {|favorite| {name: Character.find_by(id: favorite.character_id).name, rating: favorite.rating}}
         puts "\nYour favorite characters are:"
-        favorite_names.each {|name| puts "- #{name}"}
+        favorite_chars.each {|char| puts "- #{char[:name]}\n  Your rating: #{char[:rating]}\n\n"}
     end
 
     def favorite_publishers

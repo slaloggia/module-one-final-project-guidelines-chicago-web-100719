@@ -1,3 +1,5 @@
+
+
 def who_dat
 puts "\n***** Welcome to 'Who Dat?' the SuperHuman identity game! *****\n\nI'll give you a secret identity, you tell me which character it belongs to!\n\n"
 wright = 0
@@ -6,19 +8,25 @@ guess = nil
     until guess == "exit game"
     masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
     right_character = masks.sample
-    puts "--- Who is #{right_character.secret_identity}? ---\n\n"
+    puts "\n--- Who is #{right_character.secret_identity}? ---\n\n"
     guess = gets.strip
     
         if guess == right_character.name
-            puts "\nWell done, friend! Asgard toasts to your wisdom!\n\n"
+            correct_box = TTY::Box.frame(width: 82, height: 5, align: :center, style: {bg: :magenta, fg: :white, border: {bg: :magenta, fg: :white}}) do
+                "\nWell done, friend! Asgard toasts to your wisdom!"
+            end
+            print correct_box
             wright += 1
             puts "You've guessed #{wright} times. You were wrong #{wrong} times"
         else
-            puts "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
+            wrong_box = TTY::Box.frame(width: 82, height: 5, align: :center, style: {bg: :green, fg: :white, border: {bg: :green, fg: :white}}) do
+                "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
+               end
+            print wrong_box 
             wrong += 1
             puts "You've guessed #{wright} times. You were wrong #{wrong} times"
         end
-    end 
+    end
 end  
 
 def welcome_game
