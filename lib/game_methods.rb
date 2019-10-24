@@ -1,5 +1,7 @@
 def who_dat
 puts "\n***** Welcome to 'Who Dat?' the SuperHuman identity game! *****\n\nI'll give you a secret identity, you tell me which character it belongs to!\n\n"
+wright = 0
+wrong = 0
 guess = nil
     until guess == "exit game"
     masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
@@ -9,10 +11,14 @@ guess = nil
     
         if guess == right_character.name
             puts "\nWell done, friend! Asgard toasts to your wisdom!\n\n"
+            wright += 1
+            puts "You've guessed #{wright} times. You were wrong #{wrong} times"
         else
             puts "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
+            wrong += 1
+            puts "You've guessed #{wright} times. You were wrong #{wrong} times"
         end
-        end 
+    end 
 end  
 
 def welcome_game

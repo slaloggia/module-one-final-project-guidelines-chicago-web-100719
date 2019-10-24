@@ -51,7 +51,8 @@ Favorites:
 - smartest :  Displays the character on your team with the highest intelligence
 
 Games:
-
+   !!!!! Character names are case sensitive !!!!!
+   
 - battle :    Choose a character to fight a random opponent selected by the computer.
               The fighter with the highest "power rating" (sum of all their stats) wins.
 - whodat :    Given a secret identity, can you guess which character does it belong to?

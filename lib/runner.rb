@@ -85,6 +85,7 @@ def runner
         puts "Enter a rating for this character \n"
         rating = gets.chomp
         user.update_character_rating(name, rating)
+        puts "\nYour have rated #{name} #{rating}"
         puts "\n"
         when "favorites"
         user.favorite_characters_names  
