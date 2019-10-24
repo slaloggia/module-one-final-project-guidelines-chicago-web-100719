@@ -54,7 +54,9 @@ class User < ActiveRecord::Base
     end
 
     def strongest
-        favorite_characters.max_by {|c| c["strength"]}
+        strong = favorite_characters.max_by {|c| c["strength"]}
+        puts "\n"
+        return "#{strong.name} has a strength of #{strong.strength}!"
     end
 
     def smartest

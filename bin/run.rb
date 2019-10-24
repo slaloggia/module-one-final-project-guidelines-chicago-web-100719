@@ -10,7 +10,7 @@ def welcome
 end
 
 def exit_app
-    box = TTY::Box.frame(width: 45, height: 5, align: :center, style: {bg: :red, border: {bg: :red, fg: :yellow}}) do
+    box = TTY::Box.frame(width: 45, height: 5, align: :center, style: {bg: :red, fg: :yellow, border: {bg: :red, fg: :yellow}}) do
         "Until next time, True Believer...\nEXCELSIOR!!!"
     end
     print box
@@ -61,7 +61,7 @@ def runner
     user_command = nil
     options
     until user_command == "exit"
-        puts "What do you want to do???\n\n"
+        puts "\n***** What do you want to do??? *****\n\n"
         user_command = gets.strip.downcase
     case user_command
         when "find"
