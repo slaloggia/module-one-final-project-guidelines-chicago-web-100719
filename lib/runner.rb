@@ -39,7 +39,7 @@ def table
     menu_box = TTY::Box.frame(width: 82, height: 19, border: :thick, title: {top_left: 'MENU'}, style: {bg: :blue, fg: :white, border: {bg: :blue, fg: :white}}) do
     table = TTY::Table.new ['OPTIONS','DESCRIPTION'], [['- find', 'Find a character in the database'], 
     ['- add', 'Add a character to your favorites'], ['- delete', 'Remove character from your favorites'], 
-    ['- rate', 'Add/Update character ratings'], ['- favorites', 'See your favorite characters'],
+    ['- favorites', 'See your favorite characters'],['- rate', 'Add/Update character ratings'], 
     ['- publisher', 'See your favorite publisher'], ['- strongest', 'See your strongest character'], 
     ['- fastest', 'See your fastest character'], ['- smartest', 'See your smartest character'], 
     ['- battle ', 'Make characters fight! Who will win?'],
