@@ -10,7 +10,10 @@ def welcome
 end
 
 def exit_app
-    puts "Until next time, True Believer...\n\nEXCELSIOR!!!\n\n"
+    box = TTY::Box.frame(width: 45, height: 5, align: :center, style: {bg: :red, border: {bg: :red, fg: :yellow}}) do
+        "Until next time, True Believer...\nEXCELSIOR!!!"
+    end
+    print box
 end
  
 def set_user(name)
@@ -18,7 +21,7 @@ def set_user(name)
 end
  
 def options
-    print TTY::Box.frame "*****Menu*****", "\n\n-find : Find a character in the database", "-add : Add a character to your favorites", 
+    print TTY::Box.frame "*****Menu*****", "-find : Find a character in the database", "-add : Add a character to your favorites", 
     "-delete : Remove character from your favorites", "-rate : Add/Update character ratings", "-favorites : See your favorite characters",
     "-publisher : Finds your favorite publisher", "-strongest : See your strongest character", "-fastest : See your fastest character",
     "-smartest : See your smartest character", "-whodat : Play our Secret Identity guessing game", "-menu : View this menu", "-exit : Exits the program" 
@@ -26,7 +29,7 @@ def options
 end
 
 def who_dat
-puts "\nWelcome to 'Who Dat?' the SuperHuman identity game! \n\nI'll give you a secret identity, you tell me which character it belongs to!\n\n"
+puts "\n***** Welcome to 'Who Dat?' the SuperHuman identity game! *****\n\nI'll give you a secret identity, you tell me which character it belongs to!\n\n"
 guess = nil
     until guess == "exit game"
     masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
@@ -104,3 +107,5 @@ def runner
 end
  
  runner
+
+ 
