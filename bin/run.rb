@@ -21,11 +21,7 @@ def set_user(name)
 end
  
 def options
-    print TTY::Box.frame "*****Menu*****", "-find : Find a character in the database", "-add : Add a character to your favorites", 
-    "-delete : Remove character from your favorites", "-rate : Add/Update character ratings", "-favorites : See your favorite characters",
-    "-publisher : Finds your favorite publisher", "-strongest : See your strongest character", "-fastest : See your fastest character",
-    "-smartest : See your smartest character", "-whodat : Play our Secret Identity guessing game", "-menu : View this menu", "-exit : Exits the program" 
-
+    table
 end
 
 def who_dat
