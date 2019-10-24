@@ -32,8 +32,8 @@ class User < ActiveRecord::Base
 
     def favorite_characters_names
         favorite_names = all_favorites.map {|favorite| Character.find_by(id: favorite.character_id).name}
-        puts "Your favorite characters are:"
-        favorite_names.each {|name| puts name}
+        puts "\nYour favorite characters are:"
+        favorite_names.each {|name| puts "- #{name}"}
     end
 
     def favorite_publishers
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     
     def delete_from_favorites(character)
         find_favorite(character).delete
-        puts "#{character} has been removed from your favorites and exiled to the Phantom Zone!!!!!"
+        puts "#{character} has been removed from your team and exiled to the Phantom Zone!!!!!"
     end
      
     def favorite_characters
@@ -60,11 +60,15 @@ class User < ActiveRecord::Base
     end
 
     def smartest
-        favorite_characters.max_by {|c| c["intelligence"]}
+        smart = favorite_characters.max_by {|c| c["intelligence"]}
+        puts "\n"
+        return "#{smart.name} has an intelligence of #{smart.intelligence}!"
     end
 
     def fastest
-        favorite_characters.max_by {|c| c["speed"]}
+        fast = favorite_characters.max_by {|c| c["speed"]}
+        puts "\n"
+        return "#{fast.name} has a speed of #{fast.speed}!"
     end
 
     

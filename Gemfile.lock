@@ -94,11 +94,7 @@ DEPENDENCIES
   sinatra-activerecord
   sqlite3
   tty-box
-<<<<<<< HEAD
-  tty-font
-=======
   tty-table
->>>>>>> 6b9304d1229e9fdb65d1c09061e26e94edef9897
 
 BUNDLED WITH
    2.0.2

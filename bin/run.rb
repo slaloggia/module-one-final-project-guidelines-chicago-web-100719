@@ -30,15 +30,16 @@ guess = nil
     until guess == "exit game"
     masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
     right_character = masks.sample
-    puts "Who is #{right_character.secret_identity}?\n\n"
+    puts "--- Who is #{right_character.secret_identity}? ---\n\n"
     guess = gets.strip
 
         if guess == right_character.name
-            puts "\nWell done, friend!\n\n"
+            puts "\nWell done, friend! Asgard toasts to your wisdom!\n\n"
         else
             puts "\nSorry, puny human, the correct answer is #{right_character.name}\n\n" 
         end
     end 
+end
 
 def table
     menu_box = TTY::Box.frame(width: 82, height: 19, border: :thick, title: {top_left: 'MENU'}, style: {bg: :blue, fg: :white, border: {bg: :blue, fg: :white}}) do
@@ -47,35 +48,16 @@ def table
     ['- rate', 'Add/Update character ratings'], ['- favorites', 'See your favorite characters'],
     ['- publisher', 'See your favorite publisher'], ['- strongest', 'See your strongest character'], 
     ['- fastest', 'See your fastest character'], ['- smartest', 'See your smartest character'], 
-    ['- menu', 'View this menu'], ['- exit', 'Exits the program'],
-    [' - play', 'Play a game']]
+    ['- battle ', 'Make characters fight! Who will win?'],
+    ['- whodat', 'Play the secret identity guessing game'],
+    ['- menu', 'View this menu'], ['- exit', 'Exits the program']]
+
     table.render :ascii, alignment: [:center], width: 80, resize: true
     end
     print menu_box
 end
 
 
-
-
- 
-# def options
-#     puts "***MENU***"
-#     puts "-find : Find a character in the database"
-#     puts "-add : Add a character to your favorites"
-#     puts "-delete : Remove character from your favorites"
-#     puts "-rate : Add/Update character ratings"
-#     puts "-favorites : See your favorite characters"
-#     puts "-publisher : Finds your favorite publisher"
-#     puts "-strongest : See your strongest character"
-#     puts "-fastest : See your fastest character"
-#     puts "-smartest : See your smartest character"
-#     puts "-menu : View this menu"
-#     puts "-exit : Exits the program" 
-#     puts "\n"
-# end
- 
- 
-     
  
 def get_user_input
     puts "Enter a character name:"
@@ -124,14 +106,13 @@ def runner
             user.favorite_publishers
         when "whodat"
             who_dat
+        when "battle"
+            game_runner
         when "menu"
             options
         when "exit"
             exit_app
-        when "play"
-            game_runner
         end
-
     end
 
   
@@ -155,26 +136,24 @@ def get_random_character
 end
 
 def battle(sh, opp)
-    
-    superhero_power = [sh["speed"]||0,sh["strength"]||0,sh["intelligence"]||0].sum
-    opponent_power = [opp["speed"]||0,opp["strength"]||0,opp["intelligence"]||0].sum
-        if superhero_power > opponent_power
-            puts "Congratulations !!!! You're the winner!!!!"
-        else puts "You've lost!!! Next time choose wisely!"
-        end
+superhero_power = [sh["speed"]||0,sh["strength"]||0,sh["intelligence"]||0].sum
+opponent_power = [opp["speed"]||0,opp["strength"]||0,opp["intelligence"]||0].sum
+    if superhero_power > opponent_power
+        puts "Congratulations !!!! You're the winner!!!!"
+    else puts "You've lost!!! Next time choose wisely!"
+    end
 end
 
 
 
 def game_runner
-    user_input = nil
-    until user_input == "exit" 
-        welcome_game  
-        user_input = gets.strip
-        sh = pick_character(user_input)
-        opp = get_random_character
-        puts "Your opponent is: #{opp[:name]}"
-        battle(sh, opp)
-    end
+    welcome_game  
+    user_input = gets.strip
+    sh = pick_character(user_input)
+    opp = get_random_character
+    puts "Your opponent is: #{opp[:name]}"
+    battle(sh, opp)
+    
 end
+
 runner
