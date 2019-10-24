@@ -120,7 +120,11 @@ def welcome_game
 end
 
 def pick_character(name)
-    Character.find_by(name: name)
+    if Character.find_by(name: name)
+        Character.find_by(name: name)
+    else puts "Sorry this character doesn't exist in our database.Please choose another one"
+        return nil
+    end
 end
 
 def get_random_character
@@ -141,14 +145,17 @@ end
 
 
 def game_runner
-    user_input = nil
-    until user_input == "exit" 
         welcome_game  
-        user_input = gets.strip
-        sh = pick_character(user_input)
+        sh = nil
+        user_input = nil
+        until sh.class == Character
+            user_input = gets.strip
+            sh = pick_character(user_input)
+        end
         opp = get_random_character
         puts "Your opponent is: #{opp[:name]}"
         battle(sh, opp)
-    end
+    
+        
 end
 runner
