@@ -1,11 +1,14 @@
 def welcome 
-    puts "\n\nWelcome to SuperWorld! Enter your name:"
-    puts "\n"
+    box = TTY::Box.frame(width: 82, height: 5, align: :center, border: :thick, style: {bg: :yellow, fg: :black, border: {bg: :yellow, fg: :black}}) do
+         "\nWelcome to SuperWorld!" 
+    end
+    print box
+    puts "\nEnter your name:\n"
     gets.chomp
 end
 
 def exit_app
-    box = TTY::Box.frame(width: 82, height: 5, align: :center, style: {bg: :red, fg: :yellow, border: {bg: :red, fg: :yellow}}) do
+    box = TTY::Box.frame(width: 82, height: 5, align: :center, border: :thick, style: {bg: :red, fg: :yellow, border: {bg: :red, fg: :yellow}}) do
         "\nUntil next time, True Believer...\nEXCELSIOR!!!"
     end
     print box
