@@ -10,6 +10,7 @@ guess = nil
     right_character = masks.sample
     puts "\n--- Who is #{right_character.secret_identity}? ---\n\n"
     guess = gets.strip
+    puts CLEAR
     
         if guess == right_character.name
             correct_box = TTY::Box.frame(width: 82, height: 5, align: :center, style: {bg: :magenta, fg: :white, border: {bg: :magenta, fg: :white}}) do
@@ -30,7 +31,7 @@ guess = nil
 end  
 
 def welcome_game
-    puts "Choose your SuperHero :"
+    puts "Choose your Champion :\n\n"
 end
 
 def pick_character(name)
@@ -67,7 +68,7 @@ def game_runner
         sh = pick_character(user_input)
     end
     opp = get_random_character
-    puts "Your opponent is: #{opp[:name]}"
+    puts "\nYour opponent is: #{opp[:name]}\n\n"
     battle(sh, opp)
     
 end

@@ -9,4 +9,6 @@ gem "activerecord", '~> 5.2'
 gem "rest-client"
 gem "tty-table"
 gem "tty-box"
+gem 'tty-font'
+gem 'pastel'
 

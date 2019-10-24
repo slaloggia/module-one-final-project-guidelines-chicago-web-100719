@@ -1,13 +1,18 @@
-def welcome 
-    box = TTY::Box.frame(width: 82, height: 5, align: :center, border: :thick, style: {bg: :yellow, fg: :black, border: {bg: :yellow, fg: :black}}) do
-         "\nWelcome to SuperWorld!" 
-    end
-    print box
+CLEAR = "\e[H\e[2J"
+
+
+def welcome
+    puts CLEAR 
+    font = TTY::Font.new(:doom)
+    pastel = Pastel.new
+    puts pastel.red(font.write("SUPERWORLD"))
+    puts pastel.yellow("******************************************************************************")
     puts "\nEnter your name:\n"
     gets.chomp
 end
 
 def exit_app
+    puts CLEAR
     box = TTY::Box.frame(width: 82, height: 5, align: :center, border: :thick, style: {bg: :red, fg: :yellow, border: {bg: :red, fg: :yellow}}) do
         "\nUntil next time, True Believer...\nEXCELSIOR!!!"
     end
@@ -42,6 +47,7 @@ end
 
 
 def table
+    puts CLEAR
     menu_box = TTY::Box.frame(width: 82, height: 19, border: :thick, title: {top_left: 'MENU'}, style: {bg: :blue, fg: :white, border: {bg: :blue, fg: :white}}) do
     table = TTY::Table.new ['OPTIONS','DESCRIPTION'], [['- find', 'Find a character in the database'], 
     ['- add', 'Add a character to your favorites'], ['- delete', 'Remove character from your favorites'], 
@@ -76,6 +82,7 @@ def runner
         user_command = gets.strip.downcase
     case user_command
         when "find"
+        puts CLEAR
         name = get_user_input.split.map(&:capitalize).join(' ')
         find_character(name)
         when "add"
@@ -94,6 +101,7 @@ def runner
         puts "\nYou have rated #{name} #{rating}"
         puts "\n"
         when "favorites"
+        puts CLEAR
         user.favorite_characters_names  
         puts "\n"
         when "strongest"
@@ -105,8 +113,10 @@ def runner
         when "publisher"
             user.favorite_publishers
         when "whodat"
+        puts CLEAR
             who_dat
         when "battle"
+        puts CLEAR
             game_runner
         when "menu"
             options
