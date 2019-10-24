@@ -20,18 +20,21 @@ def options
 end
 
 def find_character(name)
-    character = Character.find_by(name: name)
-    puts "________________________"
-    puts "Name: #{character.name}"
-    puts "Secret Identity: #{character.secret_identity}"
-    puts "Publisher: #{Publisher.find(character[:publisher_id])[:name]}"
-    puts "Alignment: #{character.alignment}"
-    puts "- Stats -"
-    puts "  Strength: #{character.strength}"
-    puts "  Speed: #{character.speed}"
-    puts "  Intelligence: #{character.intelligence}"
-    puts "________________________"
-
+    if Character.find_by(name: name)
+        character = Character.find_by(name: name)
+        puts "________________________"
+        puts "Name: #{character.name}"
+        puts "Secret Identity: #{character.secret_identity}"
+        puts "Publisher: #{Publisher.find(character[:publisher_id])[:name]}"
+        puts "Alignment: #{character.alignment}"
+        puts "- Stats -"
+        puts "  Strength: #{character.strength}"
+        puts "  Speed: #{character.speed}"
+        puts "  Intelligence: #{character.intelligence}"
+        puts "________________________"
+    else
+        puts "That character is not in the database"
+    end
 end
 
 
