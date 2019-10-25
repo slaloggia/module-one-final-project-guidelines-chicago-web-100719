@@ -49,8 +49,8 @@ def get_random_character
 end
 
 def battle(sh, opp)
-superhero_power = [sh["speed"]||0,sh["strength"]||0,sh["intelligence"]||0].sum
-opponent_power = [opp["speed"]||0,opp["strength"]||0,opp["intelligence"]||0].sum
+superhero_power = sh.power
+opponent_power = opp.power
     if superhero_power > opponent_power
         puts "Congratulations !!!! You're the winner!!!!"
     else puts "You've lost!!! Next time choose wisely!"

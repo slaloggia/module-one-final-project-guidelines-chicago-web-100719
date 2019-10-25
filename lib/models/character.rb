@@ -3,8 +3,12 @@ class Character < ActiveRecord::Base
     has_many :users, through: :user_characters
 
     
-    def self.power
-        self.all.map{|c| [c["name"],[c["speed"]||0,c["strength"]||0,c["intelligence"]||0].sum]}.to_h
+    def power
+        [self["speed"]||0,self["strength"]||0,self["intelligence"]||0].sum
+    end
+
+    def self.find_secret_idents(name)
+        all.where(secret_identity: name)
     end
 end
 
