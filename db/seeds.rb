@@ -20,6 +20,3 @@ end
 
 add_data
 
-sarah = User.create(name: "Sarah")
-daniel = User.create(name: "Daniel")
-john = User.create(name: "John Smith")
