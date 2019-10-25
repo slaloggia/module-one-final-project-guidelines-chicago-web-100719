@@ -28,7 +28,7 @@ Populates your database with data from the Superhero API.
 In your terminal execute: 
 
 ```
-ruby bin/run.rb
+rake superworld
 ```
 
 ## Functions

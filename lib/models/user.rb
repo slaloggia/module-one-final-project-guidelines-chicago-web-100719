@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
         
     end
 
+    
     def delete_from_favorites(character)
         find_favorite(character).delete
         puts "#{character} has been removed from your team and exiled to the Phantom Zone!!!!!"
