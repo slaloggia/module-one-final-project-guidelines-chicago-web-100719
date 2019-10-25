@@ -10,5 +10,9 @@ class Character < ActiveRecord::Base
     def self.find_secret_idents(name)
         all.where(secret_identity: name)
     end
+
+    def self.masks
+        all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
+    end
 end
 

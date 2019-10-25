@@ -6,7 +6,7 @@ wright = 0
 wrong = 0
 guess = nil
     until guess == "exit game"
-    masks = Character.all.select {|c| c.secret_identity != "" && c.secret_identity != c.name}
+    masks = Character.masks
     right_character = masks.sample
     puts "\n--- Who is #{right_character.secret_identity}? ---\n\n"
     guess = gets.strip
