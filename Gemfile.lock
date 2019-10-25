@@ -68,6 +68,7 @@ GEM
       tty-cursor (~> 0.7)
     tty-color (0.5.0)
     tty-cursor (0.7.0)
+    tty-font (0.4.0)
     tty-screen (0.7.0)
     tty-table (0.11.0)
       equatable (~> 0.6)
@@ -88,12 +89,14 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 5.2)
+  pastel
   pry
   require_all
   rest-client
   sinatra-activerecord
   sqlite3
   tty-box
+  tty-font
   tty-table
 
 BUNDLED WITH
